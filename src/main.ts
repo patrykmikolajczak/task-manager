@@ -10,10 +10,7 @@ async function bootstrap() {
     logger: WinstonModule.createLogger({
       transports: [
         new winston.transports.Console({
-          format: winston.format.combine(
-            winston.format.timestamp(),
-            winston.format.simple(),
-          ),
+          format: winston.format.combine(winston.format.timestamp(), winston.format.simple()),
         }),
         new winston.transports.File({
           filename: 'logs/error.log',

@@ -10,10 +10,7 @@ export class UsersController {
 
   @Post('register')
   async register(@Body() registerDto: RegisterDto) {
-    const user = await this.usersService.create(
-      registerDto.email,
-      registerDto.password,
-    );
+    const user = await this.usersService.create(registerDto.email, registerDto.password);
     return { id: user.id, email: user.email };
   }
 }

@@ -23,7 +23,7 @@ import { User } from './users/user.entity';
         password: config.get<string>('DB_PASSWORD'),
         database: config.get<string>('DB_NAME'),
         entities: [User],
-        synchronize: true, // Uwaga: tylko w środowisku developerskim!
+        synchronize: false, // Uwaga: tylko w środowisku developerskim!
       }),
     }),
     UsersModule,
