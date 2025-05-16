@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -31,6 +32,14 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true, // usuwa nadmiarowe pola
+      forbidNonWhitelisted: true, // odrzuca zapytania z niedozwolonymi polami
+      transform: true, // przekształca JSON na obiekt DTO
+    }),
+  );
 
   await app.listen(process.env.PORT ?? 3000);
 }
